@@ -11,25 +11,31 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(
-      id: params[:id],
       name: params[:name],
       price: params[:price],
       image_url: params[:image_url],
       description: params[:description],
     )
-    render :show
+    if @product.valid?
+      render :show
+    else
+      render json: { errors: @product.errors.full_messages }, status: 422
+    end
   end
 
   def update
     @product = Product.find_by(id: params[:id])
     @product.update(
-      id: params[:id] || @product.id,
       name: params[:name] || @product.name,
       price: params[:price] || @product.price,
       image_url: params[:image_url] || @product.image_url,
       description: params[:description] || @product.description,
     )
-    render :show
+    if @product.valid?
+      render :show
+    else
+      render json: { errors: @product.errors.full_messages }, status: 422
+    end
   end
 
   def destroy
