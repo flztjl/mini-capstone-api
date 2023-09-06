@@ -3,13 +3,11 @@
 one:
   name: MyString
   price: 1
-  image: MyString
   description: MyString is fake data
   supplier: one
 
 two:
   name: MyString
   price: 1
-  image: MyString
   description: MyString is fake data
   supplier: one
