@@ -1,0 +1,1 @@
+Once received the customer's request, check the product infomation in the database.
