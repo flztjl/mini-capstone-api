@@ -10,6 +10,7 @@ class Product < ApplicationRecord
   belongs_to :product
   has_many :images
   has_many :orders
+  has_many :category_products, through: :category_products
 
   def is_discounted?
     price <= 10

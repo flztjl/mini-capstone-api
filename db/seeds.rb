@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+User.create!(name: "Peter", email: "peter@test.com", password: "password")
+User.create!(name: "Jay", email: "jay@test.com", password: "password")
+
 Supplier.create!(name: "Amazon", email: "amazon@test.com", phone_number: "123223432432")
 Supplier.create!(name: "ThinkGeek", email: "thinkgeek@test.com", phone_number: "223223432432")
 
@@ -27,3 +30,18 @@ Image.create!(product_id: 4, url: "http://cdn.shopify.com/s/files/1/0289/1534/pr
 Image.create!(product_id: 5, url: "https://s-media-cache-ak0.pinimg.com/736x/9c/15/7b/9c157bea5331463f9c539cbce739a4b8.jpg")
 Image.create!(product_id: 6, url: "https://sketchfab.com/blogs/community/wp-content/uploads/2020/04/image2-2.jpg")
 Image.create!(product_id: 7, url: "https://staticdelivery.nexusmods.com/mods/1151/images/12353-0-1461721930.png")
+
+Category.create!(name: "Weapons")
+Category.create!(name: "Household items")
+Category.create!(name: "Star Wars")
+Category.create!(name: "Games")
+
+CategoryProduct.create!(category_id: 2, product_id: 1)
+CategoryProduct.create!(category_id: 2, product_id: 2)
+CategoryProduct.create!(category_id: 1, product_id: 3)
+CategoryProduct.create!(category_id: 3, product_id: 3)
+CategoryProduct.create!(category_id: 1, product_id: 4)
+CategoryProduct.create!(category_id: 4, product_id: 5)
+CategoryProduct.create!(category_id: 1, product_id: 6)
+CategoryProduct.create!(category_id: 2, product_id: 7)
+CategoryProduct.create!(category_id: 3, product_id: 7)

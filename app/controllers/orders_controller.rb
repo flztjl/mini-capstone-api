@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user
+  
   def index
     @orders = current_user.orders
     render :index
@@ -23,12 +25,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find_by(id: params[:id])
+    @order = current_user.orders.find_by(id: params[:id])
     render :show
-    if @order.user_id == current_user.id
-      render :show
-    else
-      render json: { message: "NOPE" }
-    end
   end
 end

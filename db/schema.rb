@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_21_002213) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_04_004117) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "category_products", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "images", force: :cascade do |t|
     t.string "url"
@@ -38,8 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_002213) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantity"
     t.integer "supplier_id"
+    t.integer "quantity"
   end
 
   create_table "suppliers", force: :cascade do |t|
@@ -48,6 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_002213) do
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "supplier_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,5 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_002213) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
   end
+
 end
