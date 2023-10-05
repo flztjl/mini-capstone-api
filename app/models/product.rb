@@ -10,7 +10,6 @@ class Product < ApplicationRecord
   belongs_to :user
   belongs_to :product
   has_many :images
-  has_many :orders
   has_many :categories, through: :category_products
   has_many :carted_products
   has_many :orders, through: :carted_products
