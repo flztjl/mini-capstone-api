@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user
-  
+
   def index
     @orders = current_user.orders
     render :index
@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
   def create
     carted_products = CartedProduct.where(user_id: current_user.id, status: "carted")
- 
+
     calculated_subtotal = 0
     carted_products.each do |carted_product|
       calculated_subtotal += carted_product.product.price * carted_product.quantity
