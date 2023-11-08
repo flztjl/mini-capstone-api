@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
     carted_products.each do |carted_product|
       carted_product.update(status: "purchased", order_id: @order.id)
     end
-
     render :show
   end
 

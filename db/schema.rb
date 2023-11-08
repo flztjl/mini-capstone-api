@@ -69,16 +69,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_234605) do
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "supplier_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.string "user_role", default: "customer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false
   end
 
 end

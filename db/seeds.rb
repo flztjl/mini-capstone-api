@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create!(name: "Peter", email: "peter@test.com", password: "password")
-User.create!(name: "Jay", email: "jay@test.com", password: "password")
-User.create!(name: "LJ", email: "lj@test.com", password: "password")
+User.create!(name: "Jacky", email: "znsalesgroup@gmail.com", password: "password")
+User.create!(name: "Nan", email: "zhunan8868@gmail.com", password: "password", user_role: "admin")
+User.create!(name: "Admin", email: "ssrsrfy.jl@gmail.com", password: "password", user_role: "admin")
 
-Supplier.create!(name: "Amazon", email: "amazon@test.com", phone_number: "123223432432")
-Supplier.create!(name: "ThinkGeek", email: "thinkgeek@test.com", phone_number: "223223432432")
+Supplier.create!(name: "JC sales", email: "amazon@test.com", phone_number: "123223432432")
+Supplier.create!(name: "Verna", email: "thinkgeek@test.com", phone_number: "223223432432")
 
 Product.create!(supplier_id: 1, quantity: 100, name: "WNYX Mug", price: 2, description: "Get your morning news once you wake up with a cup of joe from... well Joe. He made it with his homemade duct tape")
 Product.create!(supplier_id: 1, quantity: 100, name: "Hitchhiker's Guide to the Galaxy", price: 42, description: "In many of the more relaxed civilizations on the Outer Eastern Rim of the Galaxy, the Hitch-Hiker's Guide has already supplanted the great Encyclopaedia Galactica as the standard repository of all knowledge and wisdom.")
