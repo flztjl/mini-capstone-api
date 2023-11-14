@@ -12,47 +12,42 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.create(
-      name: params[:name],
-      image: params [],
-      description: params[:description],
-      price: params[:price],
-      supplier_id: params[:supplier_id]
-    )
-    if @product.valid? 
-      if @product.save
-        @product.images.attach(params[:images]) if params[:images].present?
-        render :show, status: :created, location: @product
-      else
-        render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
-      end
+    @product = Product.new(product_params)
+    if @product.save
+      handle_images(@product)
+      redirect_to @product, notice: 'Product was successfully created.'
     else
-      render json: { errors: @product.errors.full_messages }, status: 422
+      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def update
     @product = Product.find_by(id: params[:id])
-    @product.update(
-      name: params[:name] || @product.name,
-      description: params[:description] || @product.description,
-      price: params[:price] || @product.price,
-    )
-    if @product.valid? 
-      if @product.save
-        @product.images.attach(params[:images]) if params[:images].present?
-        render :show, status: :created, location: @product
-      else
-        render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
-      end
+    if @product.update(product_params) || handle_images(@product)
+      render :show
     else
-      render json: { errors: @product.errors.full_messages }, status: 422
+      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def destroy
     @product = Product.find_by(id: params[:id])
-    @product.destroy
-    render json: { message: "Product is successfully deleted." }
+    if @product.destroy
+      render json: { message: "Product is successfully deleted." }
+    else
+      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:name, :description, :price, :supplier_id)
+  end
+
+  def handle_images(product)
+    params[:image_urls].each do |image_url|
+      product.images.create(url: image_url)
+    end if params[:image_urls]
   end
 end
